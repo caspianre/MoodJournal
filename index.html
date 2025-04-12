@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心情日记</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>我的心情日记</h1>
+            <p class="date" id="currentDate"></p>
+        </header>
+
+        <main>
+            <div class="mood-selector">
+                <h2>今天心情如何？</h2>
+                <div class="mood-buttons">
+                    <button class="mood-btn" data-mood="happy">😊</button>
+                    <button class="mood-btn" data-mood="sad">😢</button>
+                    <button class="mood-btn" data-mood="angry">😠</button>
+                    <button class="mood-btn" data-mood="calm">😌</button>
+                    <button class="mood-btn" data-mood="excited">🤩</button>
+                </div>
+            </div>
+
+            <div class="journal-section">
+                <h2>记录今天</h2>
+                <textarea id="journalText" placeholder="写下今天发生的事情..."></textarea>
+                <button id="saveBtn">保存</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
