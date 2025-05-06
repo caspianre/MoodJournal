@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const moodButtons = document.querySelectorAll('.mood-btn');
     const journalText = document.getElementById('journalText');
     const saveBtn = document.getElementById('saveBtn');
+    const toggleHistoryBtn = document.getElementById('toggleHistory');
+    const historyList = document.getElementById('historyList');
 
     // 显示当前日期
     function displayCurrentDate() {
@@ -98,6 +100,60 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+
+    // 历史记录功能
+    function getMoodEmoji(mood) {
+        const moodEmojis = {
+            'happy': '😊',
+            'sad': '😢',
+            'angry': '😠',
+            'calm': '😌',
+            'excited': '🤩'
+        };
+        return moodEmojis[mood] || '';
+    }
+
+    function displayHistory() {
+        const entries = JSON.parse(localStorage.getItem('moodJournalEntries')) || [];
+
+        if (entries.length === 0) {
+            historyList.innerHTML = '<p style="text-align: center; color: #999;">还没有历史记录</p>';
+            return;
+        }
+
+        // 按日期倒序排列
+        entries.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+        const historyHTML = entries.map(entry => {
+            const date = new Date(entry.date);
+            const formattedDate = date.toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            return `
+                <div class="history-item">
+                    <div class="history-date">${formattedDate}</div>
+                    <div class="history-mood">${getMoodEmoji(entry.mood)}</div>
+                    <div class="history-content">${entry.content || '无内容'}</div>
+                </div>
+            `;
+        }).join('');
+
+        historyList.innerHTML = historyHTML;
+    }
+
+    toggleHistoryBtn.addEventListener('click', function() {
+        if (historyList.classList.contains('hidden')) {
+            displayHistory();
+            historyList.classList.remove('hidden');
+            toggleHistoryBtn.textContent = '隐藏历史';
+        } else {
+            historyList.classList.add('hidden');
+            toggleHistoryBtn.textContent = '查看历史';
+        }
+    });
 
     // 初始化
     displayCurrentDate();
