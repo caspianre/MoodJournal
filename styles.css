@@ -157,3 +157,66 @@ main {
     color: #666;
     font-style: italic;
 }
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .mood-buttons {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .mood-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    #journalText {
+        min-height: 150px;
+        font-size: 0.9rem;
+    }
+
+    .history-list {
+        max-height: 250px;
+        padding: 10px;
+    }
+
+    .history-item {
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .date {
+        font-size: 1rem;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    .mood-buttons {
+        justify-content: space-around;
+    }
+
+    .mood-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+}
